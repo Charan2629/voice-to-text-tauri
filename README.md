@@ -1,16 +1,93 @@
-# React + Vite
+# Voice-to-Text Desktop App (Tauri + Deepgram)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+This project is a cross-platform desktop application that converts voice input into text.
+It is inspired by tools like Wispr Flow and focuses on the core voice-to-text workflow
+rather than pixel-perfect UI design.
 
-Currently, two official plugins are available:
+Users can press and hold a button to record their voice, release to stop recording,
+and receive an accurate transcription powered by AI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Tech Stack
+- **Frontend:** React + Vite
+- **Desktop Framework:** Tauri
+- **Speech-to-Text:** Deepgram API
+- **Language:** JavaScript
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Core Features
+- Push-to-talk voice input
+- Microphone permission handling
+- Audio recording using MediaRecorder
+- Near real-time transcription using Deepgram
+- Clear recording state feedback
+- Basic error handling for microphone and API failures
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Architecture & Design Decisions
+
+### Separation of Concerns
+The application is structured with clear separation of responsibilities:
+- **UI Layer (React):** Handles user interaction and displays transcription results
+- **Audio Service:** Manages microphone access and audio recording
+- **Transcription Service:** Sends recorded audio to Deepgram and processes responses
+
+This structure improves maintainability and clarity.
+
+### Transcription Approach
+Real-time WebSocket streaming was initially explored. However, due to browser WebView
+constraints in desktop environments, a near real-time REST-based transcription approach
+was chosen for improved reliability and consistent behavior across platforms.
+
+This approach still provides minimal latency while ensuring stability.
+
+---
+
+## Known Limitations
+- Transcription occurs after recording stops (near real-time)
+- Minimal UI styling (focus was on functionality)
+- No offline transcription support
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+- Node.js (v18 or later)
+- Rust (required for Tauri)
+- Deepgram API Key
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Charan2629/voice-to-text-tauri.git
+   ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Create a .env file in the project root:
+    ```bash
+    VITE_DEEPGRAM_API_KEY=your_api_key_here
+    ```
+
+4. Run the application:
+    ```bash
+    npm run dev
+    npx tauri dev
+    ```
+
+---
+
+## Demo Video
+
+A short demo video demonstrating the complete voice-to-text workflow
+(push-to-talk recording and transcription) is provided below:
+
+🔗 Demo Video Link: <PASTE_YOUR_VIDEO_LINK_HERE>
