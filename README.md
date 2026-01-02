@@ -90,4 +90,4 @@ This approach still provides minimal latency while ensuring stability.
 A short demo video demonstrating the complete voice-to-text workflow
 (push-to-talk recording and transcription) is provided below:
 
-🔗 Demo Video Link: <PASTE_YOUR_VIDEO_LINK_HERE>
+🔗 Demo Video Link: https://drive.google.com/file/d/1D5e7IOZPQYRkzaE_80s0fhFIwgbvijbz/view?usp=sharing
